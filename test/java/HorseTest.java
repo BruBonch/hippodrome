@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HorseTest {
     @Test
     public void throwException_whenNameNull() {
-        assertThrows(IllegalArgumentException.class, () -> new Horse(null, 1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Horse(null, 1));
     }
 
     // подумать о целесообразности
@@ -20,14 +20,14 @@ public class HorseTest {
         try {
             new Horse(null, 1);
         } catch (RuntimeException e) {
-            assertEquals("Name cannot be null.", e.getMessage());
+            Assertions.assertEquals("Name cannot be null.", e.getMessage());
         }
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "    ", "\t", "\n"})
     public void throwException_whenNameEmptyString(String name) {
-        assertThrows(IllegalArgumentException.class, () -> new Horse(name, 1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Horse(name, 1));
     }
 
     @ParameterizedTest
@@ -36,13 +36,13 @@ public class HorseTest {
         try {
             new Horse(name, 1);
         } catch (RuntimeException e) {
-            assertEquals("Name cannot be blank.", e.getMessage());
+            Assertions.assertEquals("Name cannot be blank.", e.getMessage());
         }
     }
 
     @Test
     public void throwException_whenSpeedNegative() {
-        assertThrows(IllegalArgumentException.class, () -> new Horse("BoJack", -1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Horse("BoJack", -1));
     }
 
     @Test
@@ -50,13 +50,13 @@ public class HorseTest {
         try {
             new Horse("BoJack", -1);
         } catch (RuntimeException e) {
-            assertEquals("Speed cannot be negative.", e.getMessage());
+            Assertions.assertEquals("Speed cannot be negative.", e.getMessage());
         }
     }
 
     @Test
     public void throwException_whenDistanceNegative() {
-        assertThrows(IllegalArgumentException.class, () -> new Horse("BoJack", 1, -1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Horse("BoJack", 1, -1));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class HorseTest {
         try {
             new Horse("BoJack", 1, -1);
         } catch (RuntimeException e) {
-            assertEquals("Distance cannot be negative.", e.getMessage());
+            Assertions.assertEquals("Distance cannot be negative.", e.getMessage());
         }
     }
 
@@ -74,7 +74,7 @@ public class HorseTest {
         Horse horse = new Horse(expectedName, 1);
         String actualName = horse.getName();
 
-        assertEquals(expectedName, actualName);
+        Assertions.assertEquals(expectedName, actualName);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class HorseTest {
         Horse horse = new Horse("BoJack", expectedSpeed);
         double actualSpeed = horse.getSpeed();
 
-        assertEquals(expectedSpeed, actualSpeed);
+        Assertions.assertEquals(expectedSpeed, actualSpeed);
     }
 
     @Test
@@ -92,14 +92,14 @@ public class HorseTest {
         Horse horse = new Horse("BoBoJackb", 1, expectedDistance);
         double actualDistance = horse.getDistance();
 
-        assertEquals(expectedDistance, actualDistance);
+        Assertions.assertEquals(expectedDistance, actualDistance);
     }
 
     @Test
     public void getDistance_returnZero_whenConstructorWithTwoArg() {
         Horse horse = new Horse("BoJack", 1);
 
-        assertEquals(0, horse.getDistance());
+        Assertions.assertEquals(0, horse.getDistance());
     }
 
     @Test
@@ -122,7 +122,7 @@ public class HorseTest {
 
             horse.move();
 
-            assertEquals(expectedDistance, horse.getDistance());
+            Assertions.assertEquals(expectedDistance, horse.getDistance());
         }
     }
 }

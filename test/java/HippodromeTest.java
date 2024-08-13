@@ -1,20 +1,17 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HippodromeTest {
     @Test
     public void throwException_whenHorsesNull() {
-        assertThrows(IllegalArgumentException.class, () -> new Hippodrome(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Hippodrome(null));
     }
 
     @Test
@@ -22,13 +19,13 @@ public class HippodromeTest {
         try {
             Hippodrome hippodrome = new Hippodrome(null);
         } catch (RuntimeException e) {
-            assertEquals("Horses cannot be null.", e.getMessage());
+            Assertions.assertEquals("Horses cannot be null.", e.getMessage());
         }
     }
 
     @Test
     public void throwException_whenHorsesListEmpty() {
-        assertThrows(IllegalArgumentException.class, () -> new Hippodrome(new ArrayList<>()));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Hippodrome(new ArrayList<>()));
     }
 
     @Test
@@ -36,7 +33,7 @@ public class HippodromeTest {
         try {
             Hippodrome hippodrome = new Hippodrome(new ArrayList<>());
         } catch (RuntimeException e) {
-            assertEquals("Horses cannot be empty.", e.getMessage());
+            Assertions.assertEquals("Horses cannot be empty.", e.getMessage());
         }
     }
 
@@ -53,7 +50,7 @@ public class HippodromeTest {
         // теперь сравнение будет по спискам находящимся в разных областях в памяти
         List<Horse> expectedList = new ArrayList<>(horsesList);
 
-        assertEquals(expectedList, hippodrome.getHorses());
+        Assertions.assertEquals(expectedList, hippodrome.getHorses());
     }
 
     @Test
